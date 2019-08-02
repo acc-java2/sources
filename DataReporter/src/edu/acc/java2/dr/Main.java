@@ -25,30 +25,36 @@ Obviously, the #### represent my answers, which will necessarily be different...
 public class Main {
 
     public static void main(String[] args) {
+		// make sure we get 1 command-line argument, the file to open
         if (args.length != 1) {
             System.out.println("Usage: java edu.acc.java2.dr.Main {filename}");
             return;
         }
         
-        final int RECORDS = 10_000;
+        final int RECORDS = 10_000; // this was given
+		// the next block checks to make sure args[0] is a 130,000 byte file
         try {
             if (Files.size(Paths.get(args[0])) != RECORDS * 13) {
                 System.out.println("File " + args[0] + " is not big enough!");
                 return;
             }
         } catch (IOException ex) {
-            System.out.printf("File %s is too short!\n", args[0]);
+            System.out.printf("Error reading " + args[0]);
         }
         
+		// now we're ready to open and read the data and produce our report
         try (DataInputStream dis = new DataInputStream(
                 new BufferedInputStream(new FileInputStream(args[0])))) {
+		    // variables for summary report
             int intSum = 0;
             double doubleSum = 0.0;
             int trues = 0, falses = 0;
+			// loop 10,000 times reading records
             for (int n = 0; n < RECORDS; n++) {
-                int i = dis.readInt();
-                double d = dis.readDouble();
-                boolean b = dis.readBoolean();
+                int i = dis.readInt();			// first part of each record
+                double d = dis.readDouble();	// second part of each record
+                boolean b = dis.readBoolean();  // third part of each record
+				// do the math!
                 intSum += i;
                 doubleSum += d;
                 if (b) trues++;

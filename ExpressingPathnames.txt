@@ -1,0 +1,13 @@
+When a path is a Java String literal:
+
+	"C:\\Users\\javauser\\Desktop\\day1.dat"
+	
+When a path is a DOS or BASH command-line argument:
+
+	C:\No\Double\Slashes\and\no\quotes\if\the\filename\has\no\spaces
+	
+	"C:\Use\quotes\if\the\filename has some spaces"
+	
+When the path is configured in a NetBeans run configuration argument:
+
+	No quotes, no double-slashes, don't worry about spaces
