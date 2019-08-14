@@ -1,0 +1,2 @@
+Main-Class: edu.acc.java2.wc.WordCounter
+
